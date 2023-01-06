@@ -49,7 +49,10 @@ module Xirr
     def irr_guess
       return @irr_guess = 0.0 if periods_of_investment.zero?
       @irr_guess = valid? ? ((multiple ** (1 / periods_of_investment)) - 1).round(3) : false
-      @irr_guess == 1.0/0 ? 0.0 : @irr_guess
+      tmp = @irr_guess == 1.0/0 ? 0.0 : @irr_guess
+      
+      puts "guess: #{tmp}"
+      tmp
     end
 
     # @param guess [Float]
@@ -168,12 +171,6 @@ module Xirr
     # Counts how many years from first to last transaction in the cashflow
     # @return
     def periods_of_investment
-      puts "max_date -> #{max_date}"
-      puts "min_date -> #{min_date}"
-      puts "(max_date - min_date) -> #{(max_date - min_date)}"
-      puts "period -> #{period}"
-      puts "(max_date - min_date) / period -> #{(max_date - min_date) / period}"
-
       (max_date - min_date) / period
     end
 
