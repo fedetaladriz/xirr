@@ -62,7 +62,10 @@ module Xirr
         BigDecimal(0, Xirr::PRECISION)
       else
         xirr = choose_(method).send :xirr, guess, options
-        xirr = choose_(other_calculation_method(method)).send(:xirr, guess, options) if (xirr.nil? || xirr.nan?) && fallback
+        if (xirr.nil? || xirr.nan?) && fallback
+          puts "change method to #{other_calculation_method(method)}"
+          xirr = choose_(other_calculation_method(method)).send(:xirr, guess, options)
+        end
         xirr || Xirr::REPLACE_FOR_NIL
       end
     end
