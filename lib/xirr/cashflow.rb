@@ -165,6 +165,12 @@ module Xirr
     # Counts how many years from first to last transaction in the cashflow
     # @return
     def periods_of_investment
+      puts "max_date -> #{max_date}"
+      puts "min_date -> #{min_date}"
+      puts "(max_date - min_date) -> #{(max_date - min_date)}"
+      puts "period -> #{period}"
+      puts "(max_date - min_date) / period -> #{(max_date - min_date) / period}"
+
       (max_date - min_date) / period
     end
 
